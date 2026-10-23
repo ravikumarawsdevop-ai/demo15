@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Pull code from GitHub
+                git branch: 'main', url: 'https://github.com/your-repo/sample-app.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Example: build with Maven
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run unit tests
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                // Create artifact
+                sh 'mvn package'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+
